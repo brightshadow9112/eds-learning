@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDS Learning - Local Development</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+    <header></header>
+    <main>
+        <div class="section">
+            <div class="default-content-wrapper">
+                <p>Loading content...</p>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+    
+    <script type="module">
+        import { loadMarkdown, markdownToSections } from '/scripts/markdown-loader.js';
+        import { decorateButtons, decorateIcons } from '/scripts/aem.js';
+        
+        // Load and render markdown content
+        async function loadPage() {
+            try {
+                const markdown = await loadMarkdown('/index.md');
+                if (markdown) {
+                    const main = markdownToSections(markdown);
+                    
+                    // Apply EDS decorations without hiding sections
+                    decorateButtons(main);
+                    decorateIcons(main);
+                    
+                    // Show all sections
+                    main.querySelectorAll('.section').forEach(section => {
+                        section.style.display = null;
+                    });
+                    
+                    document.body.classList.add('appear');
+                } else {
+                    console.error('Failed to load markdown');
+                }
+            } catch (error) {
+                console.error('Error loading page:', error);
+            }
+        }
+        
+        loadPage();
+    </script>
+</body>
+</html>

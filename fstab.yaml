@@ -1,2 +1,3 @@
-mountpoints:
-  /: https://drive.google.com/drive/folders/1QezJ-x1xmXAenMkbkoI-fN2TjelG2516
+# Disabled for local development
+# mountpoints:
+#   /: https://drive.google.com/drive/folders/1QezJ-x1xmXAenMkbkoI-fN2TjelG2516
